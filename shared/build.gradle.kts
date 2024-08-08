@@ -25,6 +25,12 @@ kotlin {
 
     sourceSets {
         commonMain.dependencies {
+            implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0-RC")
+        }
+        androidMain.dependencies {
+            implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
+        }
+        iosMain.dependencies {
             //put your multiplatform dependencies here
         }
         commonTest.dependencies {
@@ -43,4 +49,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+    ndkVersion = "26.2.11394342"
+    buildToolsVersion = "34.0.0"
 }
