@@ -1,4 +1,4 @@
-package com.pyloa.fastnews.android
+package com.pyloa.fastnews.android.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.pyloa.fastnews.Platform
+import com.pyloa.fastnews.android.MyApplicationTheme
 
 @Composable
 fun AboutScreen(
