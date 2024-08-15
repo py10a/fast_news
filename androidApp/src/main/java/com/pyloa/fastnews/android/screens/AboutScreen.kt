@@ -5,8 +5,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -20,9 +24,10 @@ import com.pyloa.fastnews.android.MyApplicationTheme
 
 @Composable
 fun AboutScreen(
+    onBack: () -> Unit
 ) {
     Column {
-        TopToolbar()
+        TopToolbar(onBack)
         ContentView()
     }
 }
@@ -30,10 +35,18 @@ fun AboutScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun TopToolbar(
-    modifier: Modifier = Modifier
+    onTap: () -> Unit
 ) {
     TopAppBar(
-        title = { Text(text = "About") }
+        title = { Text(text = "About") },
+        navigationIcon = {
+            IconButton(onClick = onTap) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "ArrowBack"
+                )
+            }
+        }
     )
 }
 
@@ -91,6 +104,6 @@ private fun RowView(
 @Composable
 private fun AboutScreenPreview() {
     MyApplicationTheme {
-        AboutScreen()
+        AboutScreen(onBack = { })
     }
 }

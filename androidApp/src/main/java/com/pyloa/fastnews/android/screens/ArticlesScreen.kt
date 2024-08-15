@@ -34,14 +34,14 @@ import com.pyloa.fastnews.articles.ArticlesViewModel
 @Composable
 fun ArticlesScreen(
     modifier: Modifier = Modifier,
-    viewModel: ArticlesViewModel
+    viewModel: ArticlesViewModel,
+    onAboutButtonClick: () -> Unit
 ) {
     val articlesState = viewModel.articlesState.collectAsState()
 
     Column(
         modifier = modifier.fillMaxSize()
     ) {
-        AppBar()
         if (articlesState.value.isLoading) {
             LoadingView()
         }
@@ -52,6 +52,7 @@ fun ArticlesScreen(
             EmptyView()
         }
         if (articlesState.value.articles.isNotEmpty()) {
+            AppBar(onAboutButtonClick)
             ArticlesListView(articlesState.value.articles)
         }
     }
@@ -142,25 +143,29 @@ fun LoadingView() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun AppBar() {
+private fun AppBar(
+    onTap: () -> Unit
+) {
     TopAppBar(
         title = { Text(text = "Articles") },
         actions = {
             Row {
-                IconButton(onClick = {
-                }) {
-                    Icon(imageVector = Icons.Default.Info, contentDescription = null)
+                IconButton(onClick = onTap) {
+                    Icon(
+                        imageVector = Icons.Default.Info,
+                        contentDescription = null
+                    )
                 }
             }
         }
     )
 }
 
-// ********************* PREVIEW *********************
 @Composable
 @Preview
 fun ArticlesScreenPreview() {
     ArticlesScreen(
-        viewModel = ArticlesViewModel()
+        viewModel = ArticlesViewModel(),
+        onAboutButtonClick = {}
     )
 }

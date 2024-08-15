@@ -44,8 +44,6 @@ struct ArticlesScreen: View {
                 EmptyView(message: "Nothing to show!")
             }
             else if (!viewModel.articlesState.articles.isEmpty) {
-                TopAppBar()
-                
                 ScrollView {
                     LazyVStack(alignment: .leading, spacing: 10.0) {
                         ForEach(viewModel.articlesState.articles, id: \.self) { article in
@@ -66,21 +64,6 @@ struct ArticlesItemView: View {
     var body: some View {
         VStack (alignment: .leading, spacing: 8.0) {
             AsyncImage(url: URL(string: article.imageUrl))
-            
-//            AsyncImage(
-//                url: URL(string: article.imageUrl)
-//            ) { image in
-//                if image != nil {
-//                    image
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                }
-//                else if image.error != nil {
-//                        Text("Image load error!")
-//                }
-//            } placeholder: {
-//                ProgressView()
-//            }
             Text(article.title)
                 .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 .bold()
@@ -93,16 +76,6 @@ struct ArticlesItemView: View {
                 .foregroundStyle(.gray)
         }
         .padding(16)
-    }
-}
-
-struct TopAppBar: View {
-    let title: String = "Articles"
-    
-    var body: some View {
-        Text(title)
-            .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-            .bold()
     }
 }
 

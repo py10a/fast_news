@@ -7,6 +7,9 @@ import shared
 import SwiftUI
 
 struct AboutScreen: View {
+    @Environment(\.dismiss)
+    private var dismiss
+    
     private struct RowItem: Hashable {
         let title: String
         let subtitle: String
@@ -48,6 +51,15 @@ struct AboutScreen: View {
                 }
             }
             .navigationTitle("About")
+            .toolbar {
+                ToolbarItem {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Return")
+                    }
+                }
+            }
         }
 
     }
